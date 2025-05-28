@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solicitação de Hardware</title>
+  <style>
+    body {
+      background: #c2a8f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: #ddd;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    input {
+      display: block;
+      margin: 10px auto;
+      padding: 5px;
+    }
+    button {
+      background-color: purple;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #confirmacao {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="formulario">
+  <h2 id="hardwareTitle">Verificação</h2>
+  <select id="hardware">
+    <option value="mouse">Mouse</option>
+    <option value="teclado">Teclado</option>
+    <option value="monitor">Monitor</option>
+    <option value="fone">Fone</option>
+  </select>
+
+  <input type="number" placeholder="Digite a quantidade" id="quantidade" />
+  <input type="text" placeholder="Nome do funcionário" id="nome" />
+  <input type="text" placeholder="ID corporativo" id="idFuncionario" />
+  <button onclick="enviar()">Enviar</button>
+</div>
+
+<div class="card hidden" id="confirmacao">
+  <h2>Requisição confirmada</h2>
+  <p><strong>Solicitação:</strong> <span id="confHardware"></span></p>
+  <p><strong>Quantidade:</strong> <span id="confQtd"></span></p>
+  <p><strong>Funcionário:</strong> <span id="confNome"></span></p>
+  <p><strong>ID funcionário:</strong> <span id="confID"></span></p>
+  <p><strong>REQ:</strong> <span id="confREQ"></span></p>
+  <p><strong>SLA:</strong> 1 dia útil</p>
+</div>
+
+<script>
+  function gerarREQ() {
+    return Math.floor(10000 + Math.random() * 90000); // Gera número aleatório de 5 dígitos
+  }
+
+  function enviar() {
+    const hardware = document.getElementById('hardware').value;
+    const qtd = document.getElementById('quantidade').value;
+    const nome = document.getElementById('nome').value;
+    const id = document.getElementById('idFuncionario').value;
+
+    document.getElementById('confHardware').textContent = hardware;
+    document.getElementById('confQtd').textContent = qtd;
+    document.getElementById('confNome').textContent = nome;
+    document.getElementById('confID').textContent = id;
+    document.getElementById('confREQ').textContent = gerarREQ();
+
+    document.getElementById('formulario').classList.add('hidden');
+    document.getElementById('confirmacao').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
